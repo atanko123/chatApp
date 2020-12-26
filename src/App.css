@@ -1,3 +1,59 @@
+.Header {
+  padding: 20px;
+  text-align: right;
+  background: #c6cbd2;
+  color: black;
+  font-size: 30px;
+  vertical-align: middle;
+}
+
+.profile-pic {
+  margin-left: 10px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  vertical-align: middle;
+}
+
+.logout-pic {
+  margin-left: 10px;
+  width: 40px;
+  height: 40px;
+  vertical-align: middle;
+  cursor: pointer;
+}
+
+.my-text {
+  text-align: right;
+  background-color: #3366ff;
+  color: white;
+  float: right;
+}
+
+.my-text-container {
+  width: 100%;
+  float: right;
+}
+
+.msg-text {
+  margin: 10px;
+  padding: 10px 20px 10px 20px;
+  border-radius: 20px;
+  max-width: 49%;
+}
+
+.your-text {
+  text-align: right;
+  background-color: #d3d3de;
+  color: black;
+  float: left;
+}
+
+.your-text-container {
+  width: 100%;
+  float: left;
+}
+
 .App {
   text-align: center;
 }
