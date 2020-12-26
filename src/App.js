@@ -10,9 +10,11 @@ import { useCollectionData } from "react-firebase-hooks/firestore"
 // Components
 import Header from "./components/Header"
 import Message from "./components/Message"
+import SubmitMessage from "./components/SubmitMessage"
 
 // Images
 import logout from './images/logout.png';
+import Google from './images/google.png';
 
 // Firebase config credentials (declared in .env)
 const firebaseConfig = {
@@ -38,7 +40,11 @@ function SignIn() {
     auth.signInWithPopup(provider)
   }
   return (
-    <button onClick={signInWithGoogle}>Sign In with Google</button>
+    <img 
+      className="google-signin"
+      onClick={signInWithGoogle}
+      src={Google}
+      alt="Sign in with google"/>
   )
 }
 
@@ -56,28 +62,19 @@ function GetMessages() {
     showContent = messages[0].map(msg => {
       const isMe = user && user.uid === msg.userID
 
-      return <Message key={Math.random()} msg={msg.message} isMe={isMe}/>
+      return (
+        <Message 
+          key={Math.random()}
+          msg={msg.message}
+          isMe={isMe}
+          time={msg.time}
+        />
+      )
     })
   }
 
   return (
     <div>{ showContent }</div>
-  )
-}
-
-function SendMessage() {
-  const addMessage = async () => {
-    const collectionName = firestore.collection("messages")
-    const user = auth.currentUser
-
-    await collectionName.add({
-      message: `Random num added: ${Math.random()}`,
-      userID: user.uid,
-      time: firebase.firestore.FieldValue.serverTimestamp()
-    })
-  }
-  return (
-    <button onClick={addMessage}>Send message</button>
   )
 }
 
@@ -98,6 +95,25 @@ function SignOut() {
   )
 }
 
+function sendMessage(text) {
+  const msg = text.trim()
+  if (msg === "") {
+    console.log("Message is empty")
+  }
+  else {
+    const addMessage = (async () => {
+      const collectionName = firestore.collection("messages")
+      const user = auth.currentUser
+  
+      await collectionName.add({
+        message: msg,
+        userID: user.uid,
+        time: firebase.firestore.FieldValue.serverTimestamp()
+      })
+    })()
+  }
+}
+
 
 function App() {
   const [user] = useAuthState(auth)
@@ -108,8 +124,8 @@ function App() {
       <Header user={user} signOut={<SignOut />}/>  
       {user == null && <SignIn /> }
 
-      {user ? <GetMessages /> : null }
-      {user ? <SendMessage /> : null }
+      {user && <GetMessages /> }
+      {user && <SubmitMessage sendMsg={sendMessage}/> }
     </div>
   );
 }

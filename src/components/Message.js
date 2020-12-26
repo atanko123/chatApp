@@ -1,15 +1,14 @@
 import React from "react"
 
 function Message(props) {
-    const {msg, isMe} = props
-    let a = "TI";
-    if (isMe) {
-        a = "JAZ"
-    }
+    const {msg, isMe, time} = props
+
     return (
 
         <div className={ isMe ? "my-text-container" : "your-text-container" }>
-            <div className={ `msg-text ${isMe ? "my-text" : "your-text"}` }>{msg}: {a}</div>
+            <div className={ `msg-text ${isMe ? "my-text" : "your-text"}` }>
+                {msg}
+            </div>
         </div>
     )
 }

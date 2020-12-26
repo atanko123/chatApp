@@ -7,6 +7,17 @@
   vertical-align: middle;
 }
 
+.google-signin {
+  width: 180px;
+  height: 43px;
+  margin-top: 40px;
+  background-color: #4285f4;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  text-align: center;
+} 
+
 .profile-pic {
   margin-left: 10px;
   width: 40px;
@@ -54,8 +65,46 @@
   float: left;
 }
 
+.footer-style {
+  height: 40px;
+  padding: 5px;
+  display: flex;
+  justify-content: space-between;  
+}
+
+.input-style {
+  width: 100%;
+  height: 100%;
+  border-radius: 20px;
+  font-size: 1.5rem;
+  border-color: #c6cbd2;
+  color: black;
+  padding-left: 10px;
+  outline: none;
+  vertical-align: middle;
+  float: left;
+}
+
+.send-btn {
+  width: 10rem;
+  height: 100%;
+  border-radius: 20px;
+  color: white;
+  background-color:#4db8ff;
+  font-size: 1.2rem;
+  margin-left: 10px;
+  outline: none;
+  vertical-align: middle;
+  cursor: pointer;
+}
+
 .App {
   text-align: center;
+  height: 100%;
+}
+
+html {
+  //background-color: #8c8c8c;
 }
 
 .App-logo {
