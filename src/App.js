@@ -16,6 +16,12 @@ import SubmitMessage from "./components/SubmitMessage"
 import logout from './images/logout.png';
 import Google from './images/google.png';
 
+// test data
+import testData from './testData'
+
+const TEST_MESSAGES = true
+const ENABLE_SUBMIT = false
+
 // Firebase config credentials (declared in .env)
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_API_KEY,
@@ -49,12 +55,18 @@ function SignIn() {
 }
 
 function GetMessages() {
-  const messageID = firestore.collection("messages")
-  //console.log("MsgID:", messageID)
-
-  const query = messageID.orderBy("time").limit(20)
-
-  const messages = useCollectionData(query,  {idField: "id"})
+  console.log("messages:", testData)
+  let messages = [];
+  if (!ENABLE_SUBMIT) {
+    messages.push(testData)
+  } else {
+    const messageID = firestore.collection("messages")
+    //console.log("MsgID:", messageID)
+  
+    const query = messageID.orderBy("time").limit(20)
+  
+    messages = useCollectionData(query,  {idField: "id"})
+  }
 
   const user = auth.currentUser
   let showContent = null
@@ -101,16 +113,20 @@ function sendMessage(text) {
     console.log("Message is empty")
   }
   else {
-    const addMessage = (async () => {
-      const collectionName = firestore.collection("messages")
-      const user = auth.currentUser
-  
-      await collectionName.add({
-        message: msg,
-        userID: user.uid,
-        time: firebase.firestore.FieldValue.serverTimestamp()
-      })
-    })()
+    if (TEST_MESSAGES) {
+      alert("Test mode on")
+    } else {
+      const addMessage = (async () => {
+        const collectionName = firestore.collection("messages")
+        const user = auth.currentUser
+    
+        await collectionName.add({
+          message: msg,
+          userID: user.uid,
+          time: firebase.firestore.FieldValue.serverTimestamp()
+        })
+      })()
+    }
   }
 }
 
