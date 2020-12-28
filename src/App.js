@@ -14,8 +14,8 @@ import GetMessages from "./components/GetMessages"
 import logout from './images/logout.png';
 import Google from './images/google.png';
 
-const TEST_MESSAGES = true
-const ENABLE_SUBMIT = false
+const TEST_MESSAGES = false
+const ENABLE_SUBMIT = true
 
 
 
