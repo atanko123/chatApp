@@ -17,6 +17,8 @@ import Google from './images/google.png';
 const TEST_MESSAGES = true
 const ENABLE_SUBMIT = false
 
+
+
 // Firebase config credentials (declared in .env)
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_API_KEY,
@@ -95,9 +97,9 @@ function App() {
 
   return (
     <div className="App">
-      <Header user={user} signOut={<SignOut />}/>  
+      <Header user={user} signOut={<SignOut />} />  
       {user == null && <SignIn /> }
-
+      <div className="contariner"></div>
       {user && <GetMessages
         user={user}
         firestore={firestore}

@@ -50,6 +50,7 @@ class SubmitMessage extends Component {
                         Send
                 </button>
             </footer>
+            
         )
     }
 }
