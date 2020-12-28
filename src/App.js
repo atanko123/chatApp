@@ -40,7 +40,20 @@ const firestore = firebase.firestore()
 function SignIn() {
   const signInWithGoogle = () => {
     const provider = new firebase.auth.GoogleAuthProvider()
-    auth.signInWithPopup(provider)
+    auth.signInWithPopup(provider).then(token => {
+      const { user } = token 
+      //console.log(user)
+
+      const addUser = (async () => {
+        const collectionName = firestore.collection("users")
+        await collectionName.add({
+          uid: user.uid,
+          name: user.displayName,
+          photoURL: user.photoURL,
+          email: user.email
+        })
+      })()
+    })
   }
   return (
     <img 
@@ -93,7 +106,6 @@ function sendMessage(text) {
 
 function App() {
   const [user] = useAuthState(auth)
-  console.log(user)
 
   return (
     <div className="App">

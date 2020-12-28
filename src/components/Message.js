@@ -22,6 +22,7 @@ function Message(props) {
     }
     const date = parseDate(time)
 
+
     return (
 
         <div className={ isMe ? "my-text-container" : "your-text-container" }>
