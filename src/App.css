@@ -1,16 +1,25 @@
 .Header {
-  padding: 20px;
+  width: 100%;
+  height: 45px;
+  padding-top: 20px;
+  padding-bottom: 20px;
   text-align: right;
   background: #c6cbd2;
   color: black;
-  font-size: 30px;
+  font-size: 2rem;
   vertical-align: middle;
+  position: fixed;
+  top: 0;
+}
+
+.contariner {
+  margin-top: 95px;
 }
 
 .google-signin {
   width: 180px;
   height: 43px;
-  margin-top: 40px;
+  margin-top: 30%;
   background-color: #4285f4;
   border: none;
   color: #fff;
@@ -18,16 +27,29 @@
   text-align: center;
 } 
 
+.google-signin:hover {
+  opacity: 0.5;
+}
+
 .profile-pic {
   margin-left: 10px;
+  margin-right: 20px;
   width: 40px;
   height: 40px;
   border-radius: 50%;
   vertical-align: middle;
 }
 
+.msg-pic {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  vertical-align: middle;
+  margin-top: 10px;
+}
+
 .logout-pic {
-  margin-left: 10px;
+  margin-right: 20px;
   width: 40px;
   height: 40px;
   vertical-align: middle;
@@ -35,10 +57,24 @@
 }
 
 .my-text {
+  font-size: 1.1rem;
   text-align: right;
   background-color: #3366ff;
   color: white;
   float: right;
+  word-wrap: break-word;
+}
+
+.pic-left {
+  float: left;
+  margin-left: 10px;
+  margin-right: 5px;
+} 
+
+.pic-right {
+  float: right;
+  margin-left: 5px;
+  margin-right: 10px;
 }
 
 .my-text-container {
@@ -47,17 +83,25 @@
 }
 
 .msg-text {
-  margin: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
   padding: 10px 20px 10px 20px;
   border-radius: 20px;
   max-width: 49%;
 }
 
 .your-text {
+  font-size: 1.1rem;
   text-align: right;
   background-color: #d3d3de;
   color: black;
   float: left;
+  word-wrap: break-word;
+}
+
+.msg-date {
+  margin-top: 5px;
+  font-size: 0.6rem;
 }
 
 .your-text-container {
@@ -71,8 +115,10 @@
   padding: 5px;
   display: flex;
   justify-content: space-between;
-  position: fixed;
-  bottom: 20px;
+  position: sticky;
+  bottom: 0;
+  background-color: #8c8c8c;
+  padding-bottom: 20px;
 }
 
 .input-style {
@@ -80,7 +126,7 @@
   height: 100%;
   border-radius: 20px;
   font-size: 1.5rem;
-  border-color: #c6cbd2;
+  border: none;
   color: black;
   padding-left: 10px;
   outline: none;

@@ -1,26 +1,23 @@
-import logo from './logo.svg';
 import './App.css';
 import firebase from 'firebase/app';
 import "firebase/firestore"
 import "firebase/auth"
 
 import { useAuthState } from "react-firebase-hooks/auth"
-import { useCollectionData } from "react-firebase-hooks/firestore"
 
 // Components
 import Header from "./components/Header"
-import Message from "./components/Message"
 import SubmitMessage from "./components/SubmitMessage"
+import GetMessages from "./components/GetMessages"
 
 // Images
 import logout from './images/logout.png';
 import Google from './images/google.png';
 
-// test data
-import testData from './testData'
+const TEST_MESSAGES = false
+const ENABLE_SUBMIT = true
 
-const TEST_MESSAGES = true
-const ENABLE_SUBMIT = false
+
 
 // Firebase config credentials (declared in .env)
 const firebaseConfig = {
@@ -54,42 +51,6 @@ function SignIn() {
   )
 }
 
-function GetMessages() {
-  console.log("messages:", testData)
-  let messages = [];
-  if (!ENABLE_SUBMIT) {
-    messages.push(testData)
-  } else {
-    const messageID = firestore.collection("messages")
-    //console.log("MsgID:", messageID)
-  
-    const query = messageID.orderBy("time").limit(20)
-  
-    messages = useCollectionData(query,  {idField: "id"})
-  }
-
-  const user = auth.currentUser
-  let showContent = null
-  if (messages[0] !== undefined) {
-    showContent = messages[0].map(msg => {
-      const isMe = user && user.uid === msg.userID
-
-      return (
-        <Message 
-          key={Math.random()}
-          msg={msg.message}
-          isMe={isMe}
-          time={msg.time}
-        />
-      )
-    })
-  }
-
-  return (
-    <div>{ showContent }</div>
-  )
-}
-
 function SignOut() {
   const signOutFromGoogle = () => {
     if (auth.currentUser) {
@@ -113,7 +74,7 @@ function sendMessage(text) {
     console.log("Message is empty")
   }
   else {
-    if (TEST_MESSAGES) {
+    if (!ENABLE_SUBMIT) {
       alert("Test mode on")
     } else {
       const addMessage = (async () => {
@@ -130,17 +91,19 @@ function sendMessage(text) {
   }
 }
 
-
 function App() {
   const [user] = useAuthState(auth)
   console.log(user)
 
   return (
     <div className="App">
-      <Header user={user} signOut={<SignOut />}/>  
+      <Header user={user} signOut={<SignOut />} />  
       {user == null && <SignIn /> }
-
-      {user && <GetMessages /> }
+      <div className="contariner"></div>
+      {user && <GetMessages
+        user={user}
+        firestore={firestore}
+        test_messages={TEST_MESSAGES}/> }
       {user && <SubmitMessage sendMsg={sendMessage}/> }
     </div>
   );

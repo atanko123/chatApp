@@ -1,7 +1,6 @@
 import React from "react"
 // Images
 import avatar from '../images/avatar.png';
-import logout from '../images/logout.png';
 
 function Header(props) {
     const user = props.user
