@@ -11,6 +11,7 @@ import { useCollectionData } from "react-firebase-hooks/firestore"
 import Header from "./components/Header"
 import Message from "./components/Message"
 import SubmitMessage from "./components/SubmitMessage"
+import GetMessages from "./components/GetMessages"
 
 // Images
 import logout from './images/logout.png';
@@ -54,6 +55,7 @@ function SignIn() {
   )
 }
 
+/*
 function GetMessages() {
   console.log("messages:", testData)
   let messages = [];
@@ -89,6 +91,7 @@ function GetMessages() {
     <div>{ showContent }</div>
   )
 }
+*/
 
 function SignOut() {
   const signOutFromGoogle = () => {
@@ -140,7 +143,10 @@ function App() {
       <Header user={user} signOut={<SignOut />}/>  
       {user == null && <SignIn /> }
 
-      {user && <GetMessages /> }
+      {user && <GetMessages
+        user={user}
+        firestore={firestore}
+        test_messages={TEST_MESSAGES}/> }
       {user && <SubmitMessage sendMsg={sendMessage}/> }
     </div>
   );

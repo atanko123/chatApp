@@ -22,6 +22,15 @@ class SubmitMessage extends Component {
         })
     }
 
+    keyUpHandler = event => {
+        event.preventDefault()
+        // Enter pressed
+        if (event.keyCode === 13) {
+            this.cleanStateText()
+            this.props.sendMsg(this.state.text)
+        }
+    }
+
     render() {
         return (
             <footer className="footer-style">
@@ -30,6 +39,7 @@ class SubmitMessage extends Component {
                     placeholder="Write message..."
                     value={this.state.text}
                     onChange={e => this.onTextChange(e)}
+                    onKeyUp={e => this.keyUpHandler(e)}
                 />
                 <button
                     className="send-btn"
