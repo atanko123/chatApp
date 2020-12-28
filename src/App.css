@@ -3,7 +3,7 @@
   text-align: right;
   background: #c6cbd2;
   color: black;
-  font-size: 30px;
+  font-size: 2rem;
   vertical-align: middle;
 }
 
@@ -26,6 +26,14 @@
   vertical-align: middle;
 }
 
+.msg-pic {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  vertical-align: middle;
+  margin-top: 10px;
+}
+
 .logout-pic {
   margin-left: 10px;
   width: 40px;
@@ -35,10 +43,24 @@
 }
 
 .my-text {
+  font-size: 1.1rem;
   text-align: right;
   background-color: #3366ff;
   color: white;
   float: right;
+  word-wrap: break-word;
+}
+
+.pic-left {
+  float: left;
+  margin-left: 10px;
+  margin-right: 5px;
+} 
+
+.pic-right {
+  float: right;
+  margin-left: 5px;
+  margin-right: 10px;
 }
 
 .my-text-container {
@@ -47,17 +69,25 @@
 }
 
 .msg-text {
-  margin: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
   padding: 10px 20px 10px 20px;
   border-radius: 20px;
   max-width: 49%;
 }
 
 .your-text {
+  font-size: 1.1rem;
   text-align: right;
   background-color: #d3d3de;
   color: black;
   float: left;
+  word-wrap: break-word;
+}
+
+.msg-date {
+  margin-top: 5px;
+  font-size: 0.6rem;
 }
 
 .your-text-container {

@@ -28,6 +28,11 @@ function GetMessages(props) {
     if (messages[0] !== undefined) {
       showContent = messages[0].map(msg => {
         const isMe = user && user.uid === msg.userID
+        const msgPic = (() => {
+            if (isMe) {
+                return user.photoURL
+            }
+        })()
   
         return (
           <Message 
@@ -35,6 +40,7 @@ function GetMessages(props) {
             msg={msg.message}
             isMe={isMe}
             time={msg.time}
+            photoURL={msgPic}
           />
         )
       })
