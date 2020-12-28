@@ -13,16 +13,12 @@ function GetMessages(props) {
     const user = props.user
 
     let messages = [];
-    if (TEST_MESSAGES) {
-      messages.push(testData)
-    } else {
-      const messageID = firestore.collection("messages")
-      //console.log("MsgID:", messageID)
-    
-      const query = messageID.orderBy("time").limit(20)
-    
-      messages = useCollectionData(query,  {idField: "id"})
-    }
+    const messageID = firestore.collection("messages")
+    //console.log("MsgID:", messageID)
+
+    const query = messageID.orderBy("time").limit(20)
+
+    messages = useCollectionData(query,  {idField: "id"})
   
     let showContent = null
     if (messages[0] !== undefined) {
