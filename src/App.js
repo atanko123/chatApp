@@ -41,9 +41,8 @@ function SignIn() {
   const signInWithGoogle = () => {
     const provider = new firebase.auth.GoogleAuthProvider()
     auth.signInWithPopup(provider).then(token => {
+      /*
       const { user } = token 
-      //console.log(user)
-
       const addUser = (async () => {
         const collectionName = firestore.collection("users")
         await collectionName.add({
@@ -52,7 +51,7 @@ function SignIn() {
           photoURL: user.photoURL,
           email: user.email
         })
-      })()
+      })() */
     })
   }
   return (
@@ -97,7 +96,9 @@ function sendMessage(text) {
         await collectionName.add({
           message: msg,
           userID: user.uid,
-          time: firebase.firestore.FieldValue.serverTimestamp()
+          time: firebase.firestore.FieldValue.serverTimestamp(),
+          photoURL: user.photoURL,
+          name: user.displayName
         })
       })()
     }

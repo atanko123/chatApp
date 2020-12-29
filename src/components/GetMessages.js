@@ -22,30 +22,28 @@ function GetMessages(props) {
   
     let showContent = null
     if (messages[0] !== undefined) {
-      showContent = messages[0].map(msg => {
+      const len = messages[0].length
+      showContent = messages[0].map((msg, i) => {
         const isMe = user && user.uid === msg.userID
-
-        //console.log("DATE:", msg.time.toDate())
-        const msgPic = (() => {
-            if (isMe) {
-                return user.photoURL
-            }
-        })()
+        const last = (i + 1 === len) ? "last-msg" : ""
+        const msgPic = msg.photoURL
   
         return (
-          <Message 
+          <Message
             key={Math.random()}
             msg={msg.message}
             isMe={isMe}
             time={msg.time}
             photoURL={msgPic}
+            last={last}
+            name={msg.name}
           />
         )
       })
     }
   
     return (
-      <div>{ showContent }</div>
+      <div>{ showContent }<div className="last-msg"></div></div>
     )
   }
 
