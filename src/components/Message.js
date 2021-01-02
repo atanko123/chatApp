@@ -1,4 +1,5 @@
 import React, { Component } from "react"
+import Linkify from 'react-linkify';
 
 // Images
 import avatar from "../images/avatar.png"
@@ -40,7 +41,7 @@ class Message extends Component {
         }
     }
 
-    render() {
+    render() {  
         const {
             msg,
             isMe,
@@ -64,7 +65,11 @@ class Message extends Component {
                 <div onMouseOver={(e) => this.mouseOverHandler(e)}
                     onMouseLeave={(e) => this.mouseLeaveHandler(e)}
                     className={ `msg-text ${isMe ? "my-text" : "your-text"}` }>
-                    {msg}
+                    <Linkify componentDecorator={(decoratedHref, decoratedText, key) => (
+                            <a target="blank" className="linkify-a" href={decoratedHref} key={key}>{msg}</a>
+                        )}>
+                            {msg}
+                    </Linkify>
                     <div className="msg-date">
                         {date}
                     </div>

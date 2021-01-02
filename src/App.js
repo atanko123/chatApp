@@ -13,6 +13,7 @@ import GetMessages from "./components/GetMessages"
 // Images
 import logout from './images/logout.png';
 import Google from './images/google.png';
+import GoogleLogo from './images/googleLogo.png';
 
 const TEST_MESSAGES = false
 const ENABLE_SUBMIT = true
@@ -41,7 +42,7 @@ function SignIn() {
   const signInWithGoogle = () => {
     const provider = new firebase.auth.GoogleAuthProvider()
     auth.signInWithPopup(provider).then(token => {
-      /*
+      // Save logins for all users
       const { user } = token 
       const addUser = (async () => {
         const collectionName = firestore.collection("users")
@@ -49,16 +50,17 @@ function SignIn() {
           uid: user.uid,
           name: user.displayName,
           photoURL: user.photoURL,
-          email: user.email
+          email: user.email,
+          time: firebase.firestore.FieldValue.serverTimestamp()
         })
-      })() */
+      })()
     })
   }
   return (
     <img 
-      className="google-signin"
+      className="google-signin contariner"
       onClick={signInWithGoogle}
-      src={Google}
+      src={GoogleLogo}
       alt="Sign in with google"/>
   )
 }

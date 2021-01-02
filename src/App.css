@@ -16,11 +16,18 @@
   margin-top: 95px;
 }
 
+.my-text > .linkify-a {
+  color: white;
+}
+
+.your-text > .linkify-a {
+  color: black;
+}
+
+
 .google-signin {
-  width: 180px;
-  height: 43px;
-  margin-top: 30%;
-  background-color: #4285f4;
+  width: 20rem;
+  height: 20rem;
   border: none;
   color: #fff;
   cursor: pointer;
@@ -54,6 +61,10 @@
   height: 40px;
   vertical-align: middle;
   cursor: pointer;
+}
+
+.logout-pic:hover  {
+  opacity: 0.5;
 }
 
 .my-text {
@@ -145,7 +156,7 @@
   width: 100%;
   height: 100%;
   border-radius: 20px;
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   border: none;
   color: black;
   padding-left: 10px;
