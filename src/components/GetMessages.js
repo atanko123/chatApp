@@ -1,11 +1,8 @@
-import React from "react"
+import React, { useEffect, useRef } from "react"
 import { useCollectionData } from "react-firebase-hooks/firestore"
 
 // Components
 import Message from "./Message"
-
-// test data
-import testData from '../testData'
 
 function GetMessages(props) {
     const TEST_MESSAGES = props.test_messages
@@ -19,6 +16,15 @@ function GetMessages(props) {
     const query = messageID.orderBy("time", "desc").limit(20)
 
     messages = useCollectionData(query,  {idField: "id"})
+
+    const messagesEndRef = useRef(null)
+
+    const scrollToBottom = () => {
+      console.log("ref", messagesEndRef)
+      messagesEndRef.current.scrollIntoView({ behavior: "smooth" })
+    }
+  
+    useEffect(scrollToBottom, [messages]);
   
     let showContent = null
     if (messages[0] !== undefined) {
@@ -43,7 +49,10 @@ function GetMessages(props) {
     }
   
     return (
-      <div>{ showContent }</div>
+      <div>
+        { showContent }
+        <div ref={messagesEndRef} className="my-text-container" />
+      </div>
     )
   }
 

@@ -1,4 +1,4 @@
-import React, { Component } from "react"
+import React, { Component, useEffect, useRef } from "react"
 import Linkify from 'react-linkify';
 
 // Images
